@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Night Baby ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #160025, #430047, #09001d);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  padding: 55px 15px;
+}
+
+.moon {
+  font-size: 90px;
+  animation: glow 2s infinite alternate;
+}
+
+h1 {
+  color: #ffb6e6;
+  text-shadow: 0 0 20px #ff00bb;
+  font-size: 35px;
+}
+
+.message {
+  font-size: 23px;
+  line-height: 1.8;
+  text-shadow: 0 0 12px #ff00bb;
+}
+
+button {
+  padding: 16px 25px;
+  margin: 12px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #ff008c, #8b00ff);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  box-shadow: 0 0 20px #ff00bb;
+  cursor: pointer;
+}
+
+.heart {
+  position: absolute;
+  bottom: -30px;
+  animation: float 6s linear infinite;
+  font-size: 25px;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px white; }
+  to { text-shadow: 0 0 45px pink; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="moon">🌙</div>
+
+  <h1>Good Night Baby 💗</h1>
+
+  <div class="message">
+    शिवराज कुमार की तरफ से<br>
+    एक प्यारा सा गुड नाइट मैसेज<br><br>
+    <b>Good Night Baby ❤️</b><br>
+    <b>take care baby 😘</b><br>
+    Sweet Dreams baby💕
+  </div>
+
+  <button onclick="speak()">🔊 सुनो baby ❤️</button>
+  <button onclick="stop()">⏹ STOP</button>
+
+  <h3 id="status">Made With Love By Shivraj Kumar 💖</h3>
+</div>
+
+<script>
+function speak() {
+  speechSynthesis.cancel();
+
+  const msg = new SpeechSynthesisUtterance(
+    "Hello Baby! शिवराज कुमार की तरफ से आपको गुड नाइट। शिवराज कुमार आपको गुड नाइट बोलना चाहता है। गुड नाइट baby! गुड नाइट baby! स्वीट ड्रीम्स मेरी प्यारी बेबे take care baby।"
+  );
+
+  msg.lang = "hi-IN";
+  msg.rate = 0.82;
+  msg.pitch = 1.25;
+  msg.volume = 1;
+
+  msg.onstart = () => {
+    document.getElementById("status").innerText =
+      "❤️ Shivraj Kumar is wishing you Good Night!";
+  };
+
+  msg.onend = () => {
+    document.getElementById("status").innerText =
+      "Good Night Baby ❤️";
+  };
+
+  speechSynthesis.speak(msg);
+}
+
+function stop() {
+  speechSynthesis.cancel();
+  document.getElementById("status").innerText = "Stopped ❤️";
+}
+
+const emojis = ["❤️", "💕", "💗", "😘", "🌹"];
+
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}, 400);
+</script>
+
+</body>
+</html>
